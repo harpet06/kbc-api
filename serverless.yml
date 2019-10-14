@@ -1,0 +1,27 @@
+service: kbc
+# app and org for use with dashboard.serverless.com
+
+org: tomharper
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+functions:
+  getWorkouts:
+    handler: handler.getWorkouts
+    events:
+      - http:
+          path: workouts/{workoutdifficulty}/{workouttype}/{workoutnumber}
+          method: get
+          cors: true
+
+  getAllWorkouts:
+    handler: handler.getAllWorkouts
+    events:
+      - http:
+          path: workouts
+          method: get
+          cors: true
